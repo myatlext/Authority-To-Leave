@@ -1,0 +1,23 @@
+{
+  "name": "zolat/module-authority-to-leave",
+  "version": "1.0.0",
+  "description": "Add authority to leave support to quotes and orders.",
+  "type": "magento2-module",
+  "require": {
+    "magento/framework": "*",
+    "magento/module-quote": "101.2.*",
+    "magento/module-quote-graph-ql": "100.4.*",
+    "magento/module-sales": "103.0.*"
+  },
+  "license": [
+    "Proprietary"
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Zolat\\AuthorityToLeave\\": ""
+    }
+  }
+}
