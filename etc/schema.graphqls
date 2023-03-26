@@ -1,0 +1,19 @@
+
+type Mutation {
+    setHasAuthorityToLeaveOnCart(input: setHasAuthorityToLeaveOnCartInput @doc(description: "An input object that defines the authority to leave status of the cart.")): setHasAuthorityToLeaveOnCartOutput @resolver(class: "Zolat\\AuthorityToLeave\\Model\\Resolver\\SetAuthorityToLeave") @doc(description:"Apply authority to leave status on the cart")
+
+}
+
+
+input setHasAuthorityToLeaveOnCartInput @doc(description: "Set authority to leave status on cart.") {
+    cart_id: String! @doc(description: "The unique ID of a `Cart` object.")
+    has_authority_to_leave: Boolean @doc(description: "The authority to leave status of the cart")
+}
+
+type setHasAuthorityToLeaveOnCartOutput @doc(description: "Contains details about the cart after setting the authority to leave.") {
+    cart: Cart! @doc(description: "The cart after setting the authority to leave status.")
+}
+
+type Cart {
+    has_authority_to_leave: Boolean @resolver(class: "\\Zolat\\AuthorityToLeave\\Model\\Resolver\\GetHasAuthorityToLeave") @doc(description: "Indicates whether the cart has authority to leave status.")
+}
