@@ -9,4 +9,12 @@
                 type="Zolat\AuthorityToLeave\Model\Quote\HasAuthorityToLeave" />
     <preference for="Zolat\AuthorityToLeave\Model\Quote\SetAuthorityToLeaveInterface"
                 type="Zolat\AuthorityToLeave\Model\Quote\SetAuthorityToLeave" />
+
+    <virtualType name="Magento\Sales\Model\ResourceModel\Order\Grid">
+        <arguments>
+            <argument name="columns" xsi:type="array">
+                <item name="has_authority_to_leave" xsi:type="string">sales_order.has_authority_to_leave</item>
+            </argument>
+        </arguments>
+    </virtualType>
 </config>

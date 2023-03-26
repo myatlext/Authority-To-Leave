@@ -9,4 +9,8 @@
         <column xsi:type="boolean" name="has_authority_to_leave" nullable="true"
                 comment="Authority to leave ID"/>
     </table>
+    <table name="sales_order_grid">
+        <column xsi:type="boolean" name="has_authority_to_leave" nullable="true"
+                comment="Authority to leave ID"/>
+    </table>
 </schema>
