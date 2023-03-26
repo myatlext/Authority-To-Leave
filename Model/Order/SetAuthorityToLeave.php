@@ -6,7 +6,7 @@ class SetAuthorityToLeave implements SetAuthorityToLeaveInterface
 {
     public function execute(\Magento\Sales\Api\Data\OrderInterface $order, $authorityToLeave) : void
     {
-        return;
+        $order->setData('has_authority_to_leave', $authorityToLeave);
     }
 
 }
