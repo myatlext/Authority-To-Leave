@@ -7,12 +7,14 @@ use Magento\Sales\Api\Data\OrderExtensionFactory;
 use Magento\Sales\Api\Data\OrderInterface;
 use Magento\Sales\Api\Data\OrderSearchResultInterface;
 use Magento\Sales\Api\OrderRepositoryInterface;
+use Zolat\AuthorityToLeave\Model\Config;
 use Zolat\AuthorityToLeave\Model\Order\HasAuthorityToLeave;
 
 class AddExtensionAttributes
 {
     private OrderExtensionFactory $orderExtensionFactory;
     private HasAuthorityToLeave $hasAuthorityToLeave;
+    private Config $config;
 
     /**
      * @param OrderExtensionFactory $orderExtensionFactory
@@ -20,11 +22,13 @@ class AddExtensionAttributes
      */
     public function __construct(
         OrderExtensionFactory $orderExtensionFactory,
-        HasAuthorityToLeave $hasAuthorityToLeave
+        HasAuthorityToLeave $hasAuthorityToLeave,
+        Config $config
     )
     {
         $this->orderExtensionFactory = $orderExtensionFactory;
         $this->hasAuthorityToLeave = $hasAuthorityToLeave;
+        $this->config = $config;
     }
 
     /**
@@ -35,7 +39,9 @@ class AddExtensionAttributes
      */
     public function afterGet(OrderRepositoryInterface $subject, OrderInterface $result, $id): OrderInterface
     {
-        $this->setExtensionAttributes($result);
+        if($this->config->isEnabled()) {
+            $this->setExtensionAttributes($result);
+        }
         return $result;
     }
 
@@ -47,8 +53,10 @@ class AddExtensionAttributes
      */
     public function afterGetList(OrderRepositoryInterface $subject, OrderSearchResultInterface $result, $id): OrderSearchResultInterface
     {
-        foreach ($result->getItems() as $order) {
-            $this->setExtensionAttributes($order);
+        if($this->config->isEnabled()) {
+            foreach ($result->getItems() as $order) {
+                $this->setExtensionAttributes($order);
+            }
         }
         return $result;
     }
