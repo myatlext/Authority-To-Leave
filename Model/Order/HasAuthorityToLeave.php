@@ -7,7 +7,7 @@ class HasAuthorityToLeave implements HasAuthorityToLeaveInterface
 
     public function execute(\Magento\Sales\Api\Data\OrderInterface $order) : bool
     {
-        return false;
+        return (bool) $order->getData('has_authority_to_leave');
     }
 
 }
